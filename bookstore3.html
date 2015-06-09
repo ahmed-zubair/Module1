@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title> The Book Store </title>
+ <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+ <script type="text/javascript" src="jquery-2.1.4.js"></script>
+ <script type="text/javascript" src="js/bootstrap.js"></script>
+ 
+</head>
+
+<body>
+
+<!--===============================================CAROUSEL END========================================-->
+<br>
+
+
+<div class="container-fluid">
+ 
+  <div id="left-banner" class="col-lg-1" style="margin:5px 5px 5px 5px;">
+  </div>
+ 
+  <div class="col-lg-10">
+   <div class="row">
+    <div class="col-lg-4" style="background-color:blue ; padding:10px 10px 10px 10px;">
+     First
+    </div>
+   
+    <div class="col-lg-4" style="background-color:green ; padding:10px 10px 10px 10px;">
+     Second
+    </div>
+   
+    <div class="col-lg-4" style="background-color:red ; padding:10px 10px 10px 10px;">
+     Third
+    </div>
+   </div>
+   
+   <div class="row" style=" background-color:yellow ; padding:10px 10px 10px 10px ; margin-top:5px;">
+<!--    <p id="info" onclick="change_content()"> Just Checking</p>-->
+    <p> 
+    <input id="title" type="text" name="title"><br>
+    <button id="btn" type="button" >Search Books</button>
+    <br>
+    
+    </p>
+    <p id="demo">
+    </p>
+    
+    <p id="demo1">
+    </p>
+    Search
+   </div>  
+  </div>
+ 
+ 
+
+ <div id="right-banner" class="col-lg-1">
+ </div>
+
+</div>
+
+<script>
+  
+  
+ 
+function Book(title,author,ISBN,genre,price,copies) {
+   this.title=title;
+   this.author=author;
+   this.ISBN=ISBN;
+   this.genre=genre;   
+   this.price=price;
+   this.copies=copies;
+   this.bookInfo =  function() {
+    return ' Book Title: ' + this.title + '<br> Author: ' + this.author + '<br> Genre: ' + this.genre
+       + '<br> Price: Rs.' + this.price + '<br><br>';
+    }   
+}
+  
+  var books = new Array();
+  books[0]  = new Book('Dead Reckoning','Sharmila Bose',0000,'history',100,10);
+  books[1]  = new Book('My Feudal Lord','Tehmina Durrani',0001,'autobiography',100,10);
+  books[2]  = new Book('A Brief History of Time','Stephen Hawking',0002,'science',100,10);
+  books[3]  = new Book('The Kite Runner','Khalid Hosseini',0003,'fiction',100,10);
+  books[4]  = new Book('A Thousand Splendid Suns','Khalid Hosseini',0004,'fiction',100,10);
+  books[5]  = new Book('And The Mountains Echoed','Khalid Hosseini',0005,'fiction',100,10);
+  books[6]  = new Book('Deewan-e-Ghalib','Mirza Ghalib',0006,'poetry',100,10);
+  books[7]  = new Book('Nushkha haey Wafa','Faiz Ahmad Faiz',0007,'poetry',100,10);
+  books[8]  = new Book('Blood, Sweat and Tears','Winston S. Churchill',0008,'autobiography',100,10);
+  books[9]  = new Book('Mein Kampf','Adolf Hitler',0009,'autobiography',100,10);
+  books[10] = new Book('The Fault in our Stars','John Greene',0010,'fiction',100,10);  
+    
+   $('#btn').on('click', function(e){
+   var search_text =  $('#title').val();
+  var coll = new Array();
+  for (i in books){
+      if(books[i].title.search(search_text) > -1){
+        coll.push(books[i]);
+      }
+     }  
+   printBooks(coll);
+  });
+   function printBooks(coll) {
+   for (j=0 ; j<coll.length ; j++) {
+    document.getElementById("demo1").innerHTML += coll[j].bookInfo();
+   }
+  }
+  
+ </script> 
+
+</body>
+</html>
